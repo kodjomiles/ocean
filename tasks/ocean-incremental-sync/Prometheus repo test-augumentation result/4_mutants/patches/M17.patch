@@ -1,0 +1,13 @@
+diff --git a/port_ocean/clients/port/mixins/integrations.py b/port_ocean/clients/port/mixins/integrations.py
+index 56f2fdab6..1c8c348f1 100644
+--- a/port_ocean/clients/port/mixins/integrations.py
++++ b/port_ocean/clients/port/mixins/integrations.py
+@@ -543,7 +543,7 @@ class IntegrationClientMixin:
+         if not cursor:
+             return None
+         raw = cursor.get("primary")
+-        return datetime.fromisoformat(raw) if raw else None
++        return datetime.fromisoformat(raw)
+ 
+     async def upsert_integration_cursor(
+         self, kind: str, index: int, value: datetime

@@ -1,0 +1,17 @@
+diff --git a/port_ocean/core/incremental/strategies.py b/port_ocean/core/incremental/strategies.py
+index 8358d15f9..81738b13d 100644
+--- a/port_ocean/core/incremental/strategies.py
++++ b/port_ocean/core/incremental/strategies.py
+@@ -132,11 +132,7 @@ class ServerSideTimestampStrategy(IncrementalStrategy):
+     def build_params(self, cursor: datetime | None) -> dict[str, Any]:
+         if cursor is None:
+             return {}
+-        value = (
+-            cursor.strftime(self._date_format)
+-            if self._date_format
+-            else cursor.isoformat()
+-        )
++        value = cursor.isoformat()
+         return {self._param_key: f"{self._value_prefix}{value}"}
+ 
+ 

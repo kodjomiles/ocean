@@ -1,0 +1,13 @@
+diff --git a/port_ocean/core/incremental/strategies.py b/port_ocean/core/incremental/strategies.py
+index 8358d15f9..b24951375 100644
+--- a/port_ocean/core/incremental/strategies.py
++++ b/port_ocean/core/incremental/strategies.py
+@@ -174,7 +174,7 @@ class ClientSideCutoffStrategy(IncrementalStrategy):
+     ) -> list[dict[str, Any]]:
+         if cursor is None:
+             return page
+-        return [item for item in page if not self.should_stop(item, cursor)]
++        return [item for item in page if self.should_stop(item, cursor)]
+ 
+     def should_break_pagination(
+         self, page: list[dict[str, Any]], cursor: datetime | None

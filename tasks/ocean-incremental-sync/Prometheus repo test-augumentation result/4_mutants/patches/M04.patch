@@ -1,0 +1,13 @@
+diff --git a/port_ocean/core/integrations/mixins/sync_raw.py b/port_ocean/core/integrations/mixins/sync_raw.py
+index 154312643..13e648055 100644
+--- a/port_ocean/core/integrations/mixins/sync_raw.py
++++ b/port_ocean/core/integrations/mixins/sync_raw.py
+@@ -1159,7 +1159,7 @@ class SyncRawMixin(HandlerMixin, EventsMixin):
+                 )
+                 return False
+ 
+-            await cursor_store.save(resource.kind, index, next_cursor)
++            cursor_store.save(resource.kind, index, next_cursor)
+             ocean.metrics.set_metric(
+                 name=MetricType.INCREMENTAL_KIND_DURATION_NAME,
+                 labels=[integration_type, kind_identifier],

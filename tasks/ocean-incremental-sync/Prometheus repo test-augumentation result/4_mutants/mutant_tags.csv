@@ -1,0 +1,28 @@
+id,scenario,tier,file,description
+M01,S1,easy,port_ocean/core/integrations/mixins/sync_raw.py,First-run cursor is seeded one interval in the FUTURE instead of the past.
+M02,S1,medium,port_ocean/core/integrations/mixins/sync_raw.py,First-run look-back treats the interval as minutes instead of seconds (60x too far back).
+M03,S1,easy,port_ocean/core/integrations/mixins/sync_raw.py,Stored cursor is ignored; every run re-seeds from now - interval.
+M04,S1,easy,port_ocean/core/integrations/mixins/sync_raw.py,"Cursor save coroutine is never awaited, so progress is never persisted."
+M05,S1,medium,port_ocean/core/integrations/mixins/sync_raw.py,Handlers are given the run-start snapshot (next cursor) instead of the stored/seeded cursor.
+M06,S1,hard,port_ocean/core/integrations/mixins/sync_raw.py,Persisted cursor is 'now' at save time instead of the snapshot taken before fetching; changes made during the fetch are skipped next run.
+M07,S1,hard,port_ocean/core/incremental/cursor_context.py,"Leaving the cursor scope restores the wrong value, so the cursor leaks to code running after the incremental run."
+M08,S2,easy,port_ocean/core/integrations/mixins/sync_raw.py,A kind with a single error is treated as successful and its cursor advances.
+M09,S2,medium,port_ocean/core/integrations/mixins/sync_raw.py,After a kind fails the run carries on with the remaining kinds instead of halting.
+M10,S2,medium,port_ocean/core/integrations/mixins/sync_raw.py,A kind that partially failed (errors but some entities synced) still advances its cursor.
+M11,S2,hard,port_ocean/core/integrations/mixins/sync_raw.py,"An exception while syncing a kind (e.g. Port rejecting the cursor write) is reported as success, so the run continues."
+M12,S3,medium,port_ocean/core/integrations/mixins/sync_raw.py,Kinds without an incremental handler are no longer filtered out; they fail the incremental run.
+M13,S3,medium,port_ocean/core/incremental/cursor_store.py,Every mapping block of a kind reads the cursor of block 0.
+M14,S3,hard,port_ocean/core/integrations/mixins/sync_raw.py,"Block index is counted among incremental kinds only, so cursors are keyed by the wrong mapping position when full-resync-only kinds precede them."
+M15,S3,hard,port_ocean/core/integrations/mixins/sync_raw.py,"Catch-all handlers are taken from the full-resync registry, so incremental runs also call catch-all full-resync handlers."
+M16,S4,easy,port_ocean/clients/port/mixins/integrations.py,A successful update is followed by a create request as well.
+M17,S4,medium,port_ocean/clients/port/mixins/integrations.py,A cursor document without a stored value crashes instead of reading as 'no cursor'.
+M18,S4,hard,port_ocean/clients/port/mixins/integrations.py,"Errors reading a cursor are swallowed and look like 'no cursor yet', silently restarting the kind from the default look-back."
+M19,S4,hard,port_ocean/clients/port/mixins/integrations.py,Creating a cursor sends no auth headers.
+M20,S4,hard,port_ocean/clients/port/mixins/integrations.py,Updating a cursor sends no auth headers.
+M21,S5,easy,port_ocean/core/incremental/strategies.py,Server-side filter drops the configured value prefix (e.g. '>=').
+M22,S5,easy,port_ocean/core/incremental/strategies.py,Client-side cut-off keeps the stale items and drops the fresh ones.
+M23,S5,medium,port_ocean/core/incremental/strategies.py,Server-side filter ignores the custom date format and always sends ISO 8601.
+M24,S5,medium,port_ocean/core/incremental/strategies.py,Items updated exactly at the cursor are treated as stale (off-by-one at the boundary).
+M25,S5,medium,port_ocean/core/incremental/strategies.py,"Early-stop is evaluated on the filtered batch, which never contains stale items, so pagination never stops."
+M26,S5,hard,port_ocean/core/incremental/strategies.py,Cut-off strategy without sort params (API already newest-first) crashes on incremental runs.
+M27,S5,hard,port_ocean/utils/time.py,"Timestamps with a non-UTC offset are relabelled as UTC instead of converted, so they are compared against the cursor at the wrong instant."

@@ -1,0 +1,10 @@
+diff --git a/port_ocean/core/incremental/cursor_context.py b/port_ocean/core/incremental/cursor_context.py
+index 3424a30c7..5f5ade727 100644
+--- a/port_ocean/core/incremental/cursor_context.py
++++ b/port_ocean/core/incremental/cursor_context.py
+@@ -29,4 +29,4 @@ def with_active_incremental_cursor(cursor: datetime) -> Iterator[None]:
+     try:
+         yield
+     finally:
+-        _incremental_cursor.set(previous_cursor)
++        _incremental_cursor.set(cursor)

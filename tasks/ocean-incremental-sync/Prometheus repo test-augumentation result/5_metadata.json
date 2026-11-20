@@ -1,0 +1,77 @@
+{
+  "task_id": "ocean-incremental-sync",
+  "project": "Project Prometheus - Repo Test-Augmentation",
+  "language": "Python",
+  "repo": {
+    "name": "port-labs/ocean",
+    "upstream_url": "https://github.com/port-labs/ocean",
+    "working_fork": "https://github.com/kodjomiles/ocean",
+    "base_commit": "902a7c5e670268d612527b857d901c715e2d6da3",
+    "base_commit_date": "2026-11-19",
+    "license": "Apache-2.0",
+    "python_loc_non_blank": {
+      "port_ocean (framework)": 50056,
+      "integrations": 266793,
+      "tools+scripts": 2893,
+      "total": 319742
+    }
+  },
+  "test_level": "integration",
+  "test_framework": "pytest + pytest-asyncio (asyncio_mode=auto), unittest.mock, httpx.MockTransport",
+  "difficulty_target": "top model ~60/100 (accepted band 50-70)",
+  "module": "Incremental resync (cursor-based incremental sync)",
+  "functionalities_under_test": [
+    "SyncRawMixin.sync_incremental / _sync_incremental_kind (port_ocean/core/integrations/mixins/sync_raw.py)",
+    "Incremental cursor context (port_ocean/core/incremental/cursor_context.py)",
+    "CursorStore (port_ocean/core/incremental/cursor_store.py)",
+    "IntegrationClientMixin.get_integration_cursor / upsert_integration_cursor (port_ocean/clients/port/mixins/integrations.py)",
+    "ServerSideTimestampStrategy, ClientSideCutoffStrategy, paginate_with_strategy (port_ocean/core/incremental/strategies.py)",
+    "convert_str_to_utc_datetime (port_ocean/utils/time.py)"
+  ],
+  "scenarios": [
+    {"id": "S1", "title": "Cursor progression across runs"},
+    {"id": "S2", "title": "Failed kinds"},
+    {"id": "S3", "title": "Multiple mapping blocks / kinds without incremental support"},
+    {"id": "S4", "title": "Storing cursors in Port"},
+    {"id": "S5", "title": "Fetching only what changed (pagination strategy helpers)"}
+  ],
+  "removed_upstream_tests": [
+    "port_ocean/tests/core/incremental/test_strategies.py (whole file, 25 tests)",
+    "port_ocean/tests/core/incremental/test_cursor_store.py (whole file, 4 tests)",
+    "port_ocean/tests/core/incremental/test_cursor_context.py (whole file, 3 tests)",
+    "port_ocean/tests/core/incremental/test_sync_incremental.py: classes TestSyncIncrementalNoHandlers, TestSyncIncrementalCursorSeeding, TestSyncIncrementalCursorScope, TestSyncIncrementalFailure (10 tests)"
+  ],
+  "kept_out_of_scope_tests": [
+    "port_ocean/tests/core/incremental/test_sync_incremental.py: DSP lifecycle, metrics, event type and registration classes (11 tests)"
+  ],
+  "gold_tests": {
+    "files": [
+      "port_ocean/tests/core/incremental/test_incremental_resync_flow.py",
+      "port_ocean/tests/core/incremental/test_pagination_strategies.py",
+      "port_ocean/tests/clients/port/mixins/test_integration_cursors.py"
+    ],
+    "count": 37,
+    "command": "pytest -o addopts='' -p no:cacheprovider port_ocean/tests/core/incremental/test_incremental_resync_flow.py port_ocean/tests/core/incremental/test_pagination_strategies.py port_ocean/tests/clients/port/mixins/test_integration_cursors.py",
+    "runtime_seconds": 2,
+    "mutation_score": 100
+  },
+  "full_suite": {
+    "command": "pytest -m 'not smoke' (repo default addopts, -n auto)",
+    "runtime_seconds": 70
+  },
+  "mutants": {
+    "version": "v3 (final after 3 local calibration rounds)",
+    "count": 27,
+    "tiers": {"easy": 7, "medium": 10, "hard": 10},
+    "per_scenario": {"S1": 7, "S2": 4, "S3": 4, "S4": 5, "S5": 7},
+    "spec": "mutants/mutants_spec.py",
+    "patches": "mutants/patches/M01.patch ... M27.patch"
+  },
+  "instruction_version": "v2 (edge-case hints trimmed after local calibration run 1)",
+  "local_calibration": {
+    "note": "Blind Opus 5.5 subagents given only ticket + snapshot, unlimited time (~25 min, ~110 tool calls each). The platform run is authoritative.",
+    "blind_run_1_tests_vs_v3": 85.2,
+    "blind_run_2_tests_vs_v3": 88.9,
+    "upstream_human_tests_vs_v3": 33.3
+  }
+}

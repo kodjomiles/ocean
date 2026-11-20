@@ -1,0 +1,12 @@
+diff --git a/port_ocean/core/integrations/mixins/sync_raw.py b/port_ocean/core/integrations/mixins/sync_raw.py
+index 154312643..76b272395 100644
+--- a/port_ocean/core/integrations/mixins/sync_raw.py
++++ b/port_ocean/core/integrations/mixins/sync_raw.py
+@@ -1242,7 +1242,6 @@ class SyncRawMixin(HandlerMixin, EventsMixin):
+                 incremental_resources = [
+                     (index, resource_cfg)
+                     for index, resource_cfg in enumerate(app_config.resources)
+-                    if self.event_strategy.incremental.get(resource_cfg.kind)
+                 ]
+ 
+                 if not incremental_resources:

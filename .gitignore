@@ -1,0 +1,23 @@
+# Only the final result folder is pushed. Everything else in this workspace stays local.
+#
+# Git cannot skip a parent folder while keeping something inside it, so each step of the
+# path is opened up again below. Everything else at that level stays ignored.
+
+# Ignore everything at the top level
+/*
+
+# Keep this file itself
+!/.gitignore
+
+# Open the path tasks/ocean-incremental-sync/ step by step
+!/tasks/
+/tasks/*
+!/tasks/ocean-incremental-sync/
+/tasks/ocean-incremental-sync/*
+
+# Keep the result folder and everything inside it
+!/tasks/ocean-incremental-sync/Prometheus repo test-augumentation result/
+
+# Never push Python cache files, even inside the result folder
+__pycache__/
+*.pyc

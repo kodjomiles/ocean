@@ -1,0 +1,13 @@
+diff --git a/port_ocean/core/integrations/mixins/sync_raw.py b/port_ocean/core/integrations/mixins/sync_raw.py
+index 154312643..1c413fd6f 100644
+--- a/port_ocean/core/integrations/mixins/sync_raw.py
++++ b/port_ocean/core/integrations/mixins/sync_raw.py
+@@ -1132,7 +1132,7 @@ class SyncRawMixin(HandlerMixin, EventsMixin):
+         """Sync one kind incrementally. Returns True when the cursor was advanced."""
+         kind_started_at = time.monotonic()
+         try:
+-            with with_active_incremental_cursor(cursor):
++            with with_active_incremental_cursor(next_cursor):
+                 entities, errors = await self.process_resource(
+                     resource, index, user_agent_type
+                 )

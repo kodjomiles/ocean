@@ -1,0 +1,12 @@
+diff --git a/port_ocean/clients/port/mixins/integrations.py b/port_ocean/clients/port/mixins/integrations.py
+index 56f2fdab6..80a19f823 100644
+--- a/port_ocean/clients/port/mixins/integrations.py
++++ b/port_ocean/clients/port/mixins/integrations.py
+@@ -567,7 +567,6 @@ class IntegrationClientMixin:
+         )
+         if put_response.status_code != 404:
+             handle_port_status_code(put_response)
+-            return
+ 
+         post_response = await self.client.post(
+             f"{self.auth.api_url}/integration/{self.integration_identifier}/cursor",

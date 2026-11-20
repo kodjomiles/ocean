@@ -1,0 +1,13 @@
+diff --git a/port_ocean/core/integrations/mixins/sync_raw.py b/port_ocean/core/integrations/mixins/sync_raw.py
+index 154312643..b2a9f27ac 100644
+--- a/port_ocean/core/integrations/mixins/sync_raw.py
++++ b/port_ocean/core/integrations/mixins/sync_raw.py
+@@ -1283,7 +1283,7 @@ class SyncRawMixin(HandlerMixin, EventsMixin):
+                 for index, resource_cfg in incremental_resources:
+                     stored_cursor = await cursor_store.get(resource_cfg.kind, index)
+                     effective_cursor = stored_cursor or (
+-                        run_started_at - timedelta(seconds=interval_seconds)
++                        run_started_at + timedelta(seconds=interval_seconds)
+                     )
+                     cursor_age_seconds = (
+                         run_started_at - effective_cursor

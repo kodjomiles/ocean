@@ -1,0 +1,13 @@
+diff --git a/port_ocean/core/incremental/strategies.py b/port_ocean/core/incremental/strategies.py
+index 8358d15f9..f1bb9ba10 100644
+--- a/port_ocean/core/incremental/strategies.py
++++ b/port_ocean/core/incremental/strategies.py
+@@ -191,7 +191,7 @@ class ClientSideCutoffStrategy(IncrementalStrategy):
+         if not raw:
+             return False
+         item_time = convert_str_to_utc_datetime(str(raw))
+-        return item_time < cursor
++        return item_time <= cursor
+ 
+     def page_exhausted(
+         self, page: list[dict[str, Any]], cursor: datetime | None

@@ -1,0 +1,13 @@
+diff --git a/port_ocean/core/integrations/mixins/sync_raw.py b/port_ocean/core/integrations/mixins/sync_raw.py
+index 154312643..73b6e2635 100644
+--- a/port_ocean/core/integrations/mixins/sync_raw.py
++++ b/port_ocean/core/integrations/mixins/sync_raw.py
+@@ -1197,7 +1197,7 @@ class SyncRawMixin(HandlerMixin, EventsMixin):
+                 index=index,
+                 error=str(exc),
+             )
+-            return False
++            return True
+ 
+     async def sync_incremental(
+         self,

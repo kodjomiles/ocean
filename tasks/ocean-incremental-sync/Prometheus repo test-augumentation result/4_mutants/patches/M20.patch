@@ -1,0 +1,12 @@
+diff --git a/port_ocean/clients/port/mixins/integrations.py b/port_ocean/clients/port/mixins/integrations.py
+index 56f2fdab6..62b0bcc3e 100644
+--- a/port_ocean/clients/port/mixins/integrations.py
++++ b/port_ocean/clients/port/mixins/integrations.py
+@@ -561,7 +561,6 @@ class IntegrationClientMixin:
+ 
+         put_response = await self.client.put(
+             f"{self.auth.api_url}/integration/{self.integration_identifier}/cursor",
+-            headers=headers,
+             params=params,
+             json=body,
+         )

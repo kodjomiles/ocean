@@ -1,0 +1,13 @@
+diff --git a/port_ocean/core/integrations/mixins/sync_raw.py b/port_ocean/core/integrations/mixins/sync_raw.py
+index 154312643..4bcd00c35 100644
+--- a/port_ocean/core/integrations/mixins/sync_raw.py
++++ b/port_ocean/core/integrations/mixins/sync_raw.py
+@@ -1334,7 +1334,7 @@ class SyncRawMixin(HandlerMixin, EventsMixin):
+                                 integration_id=ocean.config.integration.identifier,
+                                 integration_type=ocean.config.integration.type,
+                             )
+-                        return
++                        continue
+                     kinds_succeeded += 1
+ 
+                 if dsp_enabled:

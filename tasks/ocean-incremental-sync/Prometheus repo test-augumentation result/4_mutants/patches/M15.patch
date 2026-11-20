@@ -1,0 +1,13 @@
+diff --git a/port_ocean/core/integrations/mixins/sync_raw.py b/port_ocean/core/integrations/mixins/sync_raw.py
+index 154312643..fa9962c84 100644
+--- a/port_ocean/core/integrations/mixins/sync_raw.py
++++ b/port_ocean/core/integrations/mixins/sync_raw.py
+@@ -122,7 +122,7 @@ class SyncRawMixin(HandlerMixin, EventsMixin):
+     ) -> list[Callable[[str], Awaitable[RAW_RESULT]]]:
+         fns = [
+             *event_mapping[resource_config.kind],
+-            *event_mapping[None],
++            *self.event_strategy.resync[None],
+         ]
+ 
+         if self.__class__._on_resync != SyncRawMixin._on_resync:

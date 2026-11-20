@@ -1,0 +1,13 @@
+diff --git a/port_ocean/core/incremental/strategies.py b/port_ocean/core/incremental/strategies.py
+index 8358d15f9..16dffcf99 100644
+--- a/port_ocean/core/incremental/strategies.py
++++ b/port_ocean/core/incremental/strategies.py
+@@ -137,7 +137,7 @@ class ServerSideTimestampStrategy(IncrementalStrategy):
+             if self._date_format
+             else cursor.isoformat()
+         )
+-        return {self._param_key: f"{self._value_prefix}{value}"}
++        return {self._param_key: value}
+ 
+ 
+ class ClientSideCutoffStrategy(IncrementalStrategy):

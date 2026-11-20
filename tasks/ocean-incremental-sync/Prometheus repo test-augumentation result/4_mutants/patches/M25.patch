@@ -1,0 +1,11 @@
+diff --git a/port_ocean/core/incremental/strategies.py b/port_ocean/core/incremental/strategies.py
+index 8358d15f9..9267fe38a 100644
+--- a/port_ocean/core/incremental/strategies.py
++++ b/port_ocean/core/incremental/strategies.py
+@@ -221,5 +221,5 @@ async def paginate_with_strategy(
+         batch = strategy.filter_page(page, cursor)
+         if batch:
+             yield batch
+-        if strategy.should_break_pagination(page, cursor):
++        if strategy.should_break_pagination(batch, cursor):
+             break

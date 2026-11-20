@@ -1,0 +1,13 @@
+diff --git a/port_ocean/core/incremental/cursor_store.py b/port_ocean/core/incremental/cursor_store.py
+index 48ae1f364..f43652750 100644
+--- a/port_ocean/core/incremental/cursor_store.py
++++ b/port_ocean/core/incremental/cursor_store.py
+@@ -21,7 +21,7 @@ class CursorStore:
+ 
+     async def get(self, kind: str, index: int) -> datetime | None:
+         """Return the stored cursor for *kind* / *index*, or ``None`` on first run."""
+-        cursor = await self._client.get_integration_cursor(kind, index)
++        cursor = await self._client.get_integration_cursor(kind, 0)
+         if cursor is None:
+             logger.debug(
+                 "No cursor found for kind, will seed from interval",

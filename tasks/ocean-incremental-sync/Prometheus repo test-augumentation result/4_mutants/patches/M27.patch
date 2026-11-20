@@ -1,0 +1,13 @@
+diff --git a/port_ocean/utils/time.py b/port_ocean/utils/time.py
+index 1926655d3..f89e75051 100644
+--- a/port_ocean/utils/time.py
++++ b/port_ocean/utils/time.py
+@@ -10,7 +10,7 @@ def convert_str_to_utc_datetime(time_str: str) -> datetime.datetime:
+     aware_date = datetime.datetime.fromisoformat(time_str)
+     if time_str.endswith("Z"):
+         aware_date = datetime.datetime.fromisoformat(time_str.replace("Z", "+00:00"))
+-    return aware_date.astimezone(datetime.timezone.utc)
++    return aware_date.replace(tzinfo=datetime.timezone.utc)
+ 
+ 
+ def convert_to_minutes(s: str) -> int:

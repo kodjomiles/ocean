@@ -1,0 +1,13 @@
+diff --git a/port_ocean/clients/port/mixins/integrations.py b/port_ocean/clients/port/mixins/integrations.py
+index 56f2fdab6..63d216f9d 100644
+--- a/port_ocean/clients/port/mixins/integrations.py
++++ b/port_ocean/clients/port/mixins/integrations.py
+@@ -538,7 +538,7 @@ class IntegrationClientMixin:
+             headers=await self.auth.headers(),
+             params={"kind": kind, "index": index},
+         )
+-        handle_port_status_code(response)
++        handle_port_status_code(response, should_raise=False)
+         cursor = response.json().get("cursor")
+         if not cursor:
+             return None

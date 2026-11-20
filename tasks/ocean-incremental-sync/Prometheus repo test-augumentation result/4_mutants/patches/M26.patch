@@ -1,0 +1,13 @@
+diff --git a/port_ocean/core/incremental/strategies.py b/port_ocean/core/incremental/strategies.py
+index 8358d15f9..82540b8bc 100644
+--- a/port_ocean/core/incremental/strategies.py
++++ b/port_ocean/core/incremental/strategies.py
+@@ -162,7 +162,7 @@ class ClientSideCutoffStrategy(IncrementalStrategy):
+         query_params: dict[str, Any] | None = None,
+     ) -> None:
+         self._stop_field = stop_field
+-        self._query_params = query_params or {}
++        self._query_params = query_params
+ 
+     def build_params(self, cursor: datetime | None) -> dict[str, Any]:
+         if cursor is None:
